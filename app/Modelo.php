@@ -6,7 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Modelo extends Model
 {
-    public function marcaModelo(){
-        return $this->hasMany(Marca::class);
+    public function marca(){
+        return $this->hasOne(Marca::class);
+    }
+
+    public function veiculo(){
+        return $this->belongsTo(Modelo::class);
     }
 }
+
