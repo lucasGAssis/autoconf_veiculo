@@ -3,14 +3,14 @@
     @csrf
     <div>
         <label for="_placa">Placa: </label>
-        <input type="text" name="placa" id="_placa">
+    <input type="text" name="placa" id="_placa" value="{{ old('placa', '') }}">
         @if($errors->has('placa'))
         <div class="invalid-feedback"> {{  $errors->first('placa') }}</div>
         @endif
     </div>
     <div>
         <label for="_chassi">Chassi: </label>
-        <input type="text" name="chassi" id="_chassi">
+        <input type="text" name="chassi" id="_chassi" value="{{ old('chassi', '')}}">
         @if($errors->has('chassi'))
         <div class="invalid-feedback"> {{  $errors->first('chassi') }}</div>
         @endif
@@ -20,7 +20,7 @@
         <select name="marca" id="_marca">
             <option value="">-----</option>
             @foreach ($marcas as $marca)
-            <option value="{{$marca->id}}">{{$marca->nome}}</option>
+            <option value="{{$marca->id}}" @if(old('marca', '') == $marca->id) selected="" @endif>{{$marca->nome}}</option>
             @endforeach
         </select>
         @if($errors->has('marca'))
@@ -30,9 +30,9 @@
     <div>
         <label for="_modelo">Modelo: </label>
         <select name="modelo" id="_modelo">
-            <option value="_marca">-----</option>
+            <option value="">-----</option>
             @foreach ($modelos as $modelo)
-            <option value="{{$modelo->id}}">{{$modelo->nome}}</option>
+            <option value="{{$modelo->id}}" @if(old('modelo', '') == $modelo->id) selected="" @endif>{{$modelo->nome}}</option>
             @endforeach
         </select>
         @if($errors->has('modelo'))
@@ -41,14 +41,14 @@
     </div>
     <div>
         <label for="_anoFabricacao">Ano de fabricação: </label>
-        <input type="text" name="anoFabricacao" id="_anoFabricacao">
+        <input type="text" name="anoFabricacao" id="_anoFabricacao" value="{{ old('anoFabricacao', '')}}">
         @if($errors->has('anoFabricacao'))
         <div class="invalid-feedback"> {{  $errors->first('anoFabricacao') }}</div>
         @endif
     </div>
     <div>
         <label for="_anoModelo">Ano Modelo: </label>
-        <input type="text" name="anoModelo" id="_anoModelo">
+        <input type="text" name="anoModelo" id="_anoModelo" value="{{ old('anoModelo', '')}}">
         @if($errors->has('anoModelo'))
         <div class="invalid-feedback"> {{  $errors->first('anoModelo') }}</div>
         @endif
