@@ -7,7 +7,7 @@
 @push('scripts')
 <script>
 $(document).ready(function(){
-    $('[name=placa]').mask('AAA-0S00', 'AAA-0000');
+    $('[name=placa]').mask('SSS-0A00');
 });
 </script>
 
