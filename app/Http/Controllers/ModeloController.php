@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Modelo;
 
 class ModeloController extends Controller
 {
     public function search(Request $request){
-        $search = $request->post('search');
+        $modelos = Modelo::where('marcaId', $request->marca)->get();
+        return response()->json($modelos);
     }
 }
