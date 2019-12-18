@@ -24,10 +24,10 @@ class VeiculoStore extends FormRequest
     public function rules()
     {
         return [
-            "placa" => "required|alpha_num|size:7",
+            "placa" => "required|size:8",
             "chassi" => "required|alpha_num|size:16",
-            "marca" => "required|numeric",
-            "modelo" => "required|numeric",
+            "marcaId" => "required|numeric",
+            "modeloId" => "required|numeric",
             "anoFabricacao" => "required|numeric|date_format:Y",
             "anoModelo" => "required|numeric|date_format:Y",
         ];

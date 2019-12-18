@@ -11,17 +11,17 @@ $(document).ready(function(){
     $('[name=anoFabricacao]').mask('9999');
     $('[name=anoModelo]').mask('9999');
 
-    $('[name=marca]').on('change', function(){
+    $('[name=marcaId]').on('change', function(){
         $.ajax({
             type: 'post',
             url: '{{ route("modelo.search") }}',
             dataType: "json",
-            data: { marca: $('[name=marca]').val() },
+            data: { marcaId: $('[name=marcaId]').val() },
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
             success: function(data){
-                var $el = $('[name=modelo]');
+                var $el = $('[name=modeloId]');
                 $el.empty();
                 $el.append($("<option></option>").attr("value", 0).attr('selected','').text('Modelo'));
                 $.each(data, function(value, key) {
@@ -29,13 +29,13 @@ $(document).ready(function(){
                 });
 
                 @if($errors->any())
-                $('[name=modelo]').val('{{ old('modelo') }}');
+                $('[name=modeloId]').val('{{ old('modelo') }}');
                 @endif
             }
         });
     })
     @if($errors->any())
-    $('[name=marca]').trigger('change');
+    $('[name=marcaId]').trigger('change');
     @endif 
 });
 </script>

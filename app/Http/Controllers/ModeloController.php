@@ -8,7 +8,7 @@ use App\Modelo;
 class ModeloController extends Controller
 {
     public function search(Request $request){
-        $modelos = Modelo::where('marcaId', $request->marca)->get();
+        $modelos = Modelo::where('marcaId', $request->marcaId)->get();
         return response()->json($modelos);
     }
 }

@@ -6,11 +6,14 @@ use Illuminate\Http\Request;
 use App\Http\Requests\VeiculoStore;
 use App\Marca;
 use App\Modelo;
+use App\Veiculo;
 
 class VeiculoController extends Controller
 {
     public function index(Request $request){
-        return view('veiculo.index');
+        $veiculos = Veiculo::all();
+        $modelo = Modelo::all();
+        return view('veiculo.index', compact('veiculos', 'modelo'));
     }
 
     public function create(Request $request){
@@ -20,7 +23,14 @@ class VeiculoController extends Controller
     }
 
     public function store(VeiculoStore $request){
-        dd($request);
+
+        $request->merge([
+            'placa' => preg_replace("/[^a-zA-Z0-9]+/", "", $request->placa)
+        ]);
+   
+        $veiculo = Veiculo::insert($request->except(['_token', '_method', 'marcaId']));
+
+        return redirect()->route('veiculo');
     }
 
     public function edit(Request $request){
