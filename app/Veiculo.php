@@ -19,6 +19,6 @@ class Veiculo extends Model
     public $timestamps = true;
     
     public function modelo(){
-        return $this->hasOne(Modelo::class);
+        return $this->hasOne(Modelo::class, 'id', 'modeloId');
     }
 }

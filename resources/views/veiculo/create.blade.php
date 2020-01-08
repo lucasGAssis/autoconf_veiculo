@@ -1,7 +1,7 @@
 @extends('layouts.template')
 
 @section('body')
-@include('veiculo.partials._form')
+@include('veiculo.partials._form', ['errorBag' => 'veiculoStore'])
 @endsection
 
 @push('scripts')
