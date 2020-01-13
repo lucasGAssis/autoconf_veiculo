@@ -4,10 +4,9 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class VeiculoStore extends FormRequest
+class LojaStore extends FormRequest
 {
-    protected $errorBag = 'veiculoStore';
-
+    //protected $errorBag = 'lojaStore';
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -26,12 +25,8 @@ class VeiculoStore extends FormRequest
     public function rules()
     {
         return [
-            "placa" => "required|size:8",
-            "chassi" => "required|alpha_num|size:16",
-            "marcaId" => "required|numeric",
-            "modeloId" => "required|numeric",
-            "anoFabricacao" => "required|numeric|date_format:Y",
-            "anoModelo" => "required|numeric|date_format:Y",
+            "nome" => "required|string|max:50",
+            "cnpj" => "required|string|size:18",
         ];
     }
 }
