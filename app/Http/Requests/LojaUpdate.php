@@ -6,6 +6,7 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class LojaUpdate extends FormRequest
 {
+    protected $errorBag = 'lojaUpdate';
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -13,7 +14,7 @@ class LojaUpdate extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
