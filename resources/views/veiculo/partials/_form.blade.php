@@ -1,4 +1,3 @@
-
 @if(empty($veiculo))
 <form action="{{route('veiculo.store')}}" method="POST" novalidate>
     @method('POST')

@@ -1,6 +1,6 @@
 @extends('layouts.template')
 @section('body')
-    @include('loja.partials._form')
+    @include('loja.partials._form', ['errorBag' => 'lojaStore'])
 @endsection
 @push('scripts')
     <script>

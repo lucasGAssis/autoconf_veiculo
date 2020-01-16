@@ -9,9 +9,20 @@ use App\Http\Requests\LojaUpdate;
 
 class LojaController extends Controller
 {
-    public function index(){
-        $lojas = Loja::paginate(5);
-        return view('loja.index', compact('lojas'));
+    public function index(Request $request){
+
+        $busca = $request->query('busca');
+        $busca = isset($busca) ? $request->query('busca') : '';
+        
+        if(!empty($busca)){
+            $lojas = Loja::where('nome', 'like', '%'.$busca.'%')
+                    ->orWhere('id', '=', $busca)->paginate(2);
+  
+        }else{
+            $lojas = Loja::paginate(3);
+        }
+        return view('loja.index', compact('lojas', 'busca')); 
+
     }
 
     public function create(){
