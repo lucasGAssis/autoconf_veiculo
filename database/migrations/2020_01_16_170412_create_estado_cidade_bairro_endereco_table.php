@@ -13,9 +13,37 @@ class CreateEstadoCidadeBairroEnderecoTable extends Migration
      */
     public function up()
     {
-        Schema::create('estado_cidade_bairro_endereco', function (Blueprint $table) {
+        Schema::create('estado', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('nome', 50);
             $table->timestamps();
+        });
+
+        Schema::create('cidade', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('nome', 50);
+            $table->timestamps();
+            $table->unsignedBigInteger('estadoId');
+            $table->foreign('estadoId')->references('id')->on('estado');
+        });
+
+        Schema::create('bairro', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('nome', 50);
+            $table->timestamps();
+            $table->unsignedBigInteger('cidadeId');
+            $table->foreign('cidadeId')->references('id')->on('cidade');
+        });
+
+        Schema::create('endereco', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('lagradouro', 50);
+            $table->string('cep', 8);
+            $table->string('numeroInicio', 8);
+            $table->string('numeroFim', 8);
+            $table->timestamps();
+            $table->unsignedBigInteger('bairroId');
+            $table->foreign('bairroId')->references('id')->on('bairro');
         });
     }
 
@@ -25,7 +53,10 @@ class CreateEstadoCidadeBairroEnderecoTable extends Migration
      * @return void
      */
     public function down()
-    {
-        Schema::dropIfExists('estado_cidade_bairro_endereco');
+    {   
+        Schema::dropIfExists('endereco');
+        Schema::dropIfExists('bairro');
+        Schema::dropIfExists('cidade');
+        Schema::dropIfExists('estado');  
     }
 }
