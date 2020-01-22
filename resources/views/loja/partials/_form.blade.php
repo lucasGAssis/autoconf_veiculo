@@ -24,6 +24,16 @@
             @endif
         </div>
     </div>
+    <div class="form-row">
+        <div class="col-md-4 mb-3">
+            <label for="_nome">CEP</label>
+            <input class="text-uppercase form-control @if($errors->{$errorBag}->has('nome')) is-invalid @endif" type="text" name="nome" id="_nome" value="{{old('nome', !empty($loja->nome) ? $loja->nome : '')}}">
+            @if($errors->{$errorBag}->has('nome'))
+            <div class="invalid-feedback"> {{$errors->{$errorBag}->first('nome')}}</div>
+            @endif
+        </div>
+    </div>
+    
     <div>
         <button type="submit">Salvar</button>
     </div>
