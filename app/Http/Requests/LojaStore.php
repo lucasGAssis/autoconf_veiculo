@@ -25,8 +25,15 @@ class LojaStore extends FormRequest
     public function rules()
     {
         return [
-            "nome" => "required|string|max:50",
+            "nome" => "required|string|max:150",
             "cnpj" => "required|string|size:18",
+            "cep"  =>  "required|string|size:8",
+            "estado" => "required|string|max:50",
+            "cidade" => "required|string|max:50",
+            "bairro" => "required|string|max:50",
+            "logradouro" => "required|string|max:50",
+            "numero" => "required|string|size:255",
+            "complemento" => "required|string|max:50"
         ];
     }
 }
