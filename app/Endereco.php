@@ -3,8 +3,17 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Bairro;
+use App\Loja;
 
 class Endereco extends Model
 {
-    //
+    protected $table = "endereco";
+
+    public function bairro(){
+        return $this->hasOne(Bairro::class, 'id', 'bairroId');
+    }
+    public function loja(){
+        return $this->belongsTo(Loja::class, 'id', 'lojaId');
+    }
 }

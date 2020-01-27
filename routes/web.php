@@ -33,3 +33,4 @@ Route::post('/loja/store', '\App\Http\Controllers\LojaController@store')->name('
 Route::get('/loja/{id}/edit', '\App\Http\Controllers\LojaController@edit')->name('loja.edit');
 Route::put('/loja/{id}/update', '\App\Http\Controllers\LojaController@update')->name('loja.update');
 Route::delete('/loja/{id}/destroy', '\App\Http\Controllers\LojaController@destroy')->name('loja.destroy');
+Route::post('/endereco/search', '\App\Http\Controllers\EnderecoController@search')->name('endereco.search');
