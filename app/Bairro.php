@@ -10,10 +10,15 @@ class Bairro extends Model
 {
     protected $table = "bairro";
 
+    /*protected $fillable = [
+        "nome",
+        "cidadeId"
+    ];*/
+
     public function cidade(){
-        return $this->belongsTo(Cidade::class, 'id', 'cidadeId');
+        return $this->belongsTo(Cidade::class);
     }
-    public function endereco(){
-        return $this->belongsTo(Endereco::class, 'id', 'enderecoId');
+    public function enderecos(){
+        return $this->hasMany(Endereco::class, 'bairroId', 'id');
     }
 }

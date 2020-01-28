@@ -9,10 +9,15 @@ class Cidade extends Model
 {
     protected $table = "cidade";
 
+    protected $fillable = [
+        "nome",
+        "estadoId"
+    ];
+
     public function estado(){
-        return $this->hasOne(Estado::class, 'id', 'estadoId');
+        return $this->belongsTo(Estado::class);
     }
-    public function bairro(){
-        return $this->belongsTo(Bairro::class, 'id', 'bairroId');
+    public function bairros(){
+        return $this->hasMany(Bairro::class, 'cidadeId', 'id');
     }
 }

@@ -11,9 +11,9 @@ class Endereco extends Model
     protected $table = "endereco";
 
     public function bairro(){
-        return $this->hasOne(Bairro::class, 'id', 'bairroId');
+        return $this->belongsTo(Bairro::class);
     }
     public function loja(){
-        return $this->belongsTo(Loja::class, 'id', 'lojaId');
+        return $this->belongsTo(Loja::class);
     }
 }

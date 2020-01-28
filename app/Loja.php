@@ -8,6 +8,15 @@ use App\Endereco;
 class Loja extends Model
 {
     //protected $fillable = ["nome", "cnpj"];
+
+    protected $fillable = [
+        "nome",
+        "cnpj",
+        "logradouro_id",
+        "numero",
+        "complemento"
+    ];
+
     public function endereco(){
         return $this->hasOne(Endereco::class, 'id', 'endereco');
     }

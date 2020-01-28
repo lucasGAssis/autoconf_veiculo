@@ -9,7 +9,11 @@ class Estado extends Model
 {
     protected $table = "estado";
 
-    public function cidade(){
-        return $this->belongsTo(Cidade::class, 'id', 'estadoId');
+    protected $fillable = [
+        "nome",
+    ];
+
+    public function cidades(){
+        return $this->hasMany(Cidade::class, 'estadoId', 'id');
     }
 }
