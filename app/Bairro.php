@@ -10,10 +10,10 @@ class Bairro extends Model
 {
     protected $table = "bairro";
 
-    /*protected $fillable = [
+    protected $fillable = [
         "nome",
         "cidadeId"
-    ];*/
+    ];
 
     public function cidade(){
         return $this->belongsTo(Cidade::class);
