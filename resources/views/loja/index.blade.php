@@ -1,5 +1,6 @@
 @extends('layouts.template')
 @section('body')
+@include('includes.alert')
 <div class="row">
     <div class="col">
     <form method="GET" action="{{ route('loja') }}">
