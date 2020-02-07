@@ -37,7 +37,6 @@ class LojaController extends Controller
         ]);
 
         $loja = Loja::where('cnpj', $request->cnpj)->get();
-        $endereco = Endereco::where('cep', $request->cep)->first();
 
         if(count($loja) != 0){
             return redirect()
@@ -48,7 +47,11 @@ class LojaController extends Controller
 
             $novo->nome = $request->nome;
             $novo->cnpj = $request->cnpj;
-            $novo->logradouro_id = $endereco->id;
+            $novo->cep = $request->cep;
+            $novo->estado = $request->estado;
+            $novo->cidade = $request->cidade;
+            $novo->bairro = $request->bairro;
+            $novo->logradouro = $request->logradouro;
             $novo->numero = $request->numero;
             $novo->complemento = $request->complemento;
             $novo->save();
@@ -65,10 +68,11 @@ class LojaController extends Controller
         return view('loja.edit', compact('loja'));
     }
 
-    public function update(LojaUpdate $request, $id){
+    public function update(LojaUpdate $request, $id, Loja $loja){
         $loja = Loja::find($id);
         $request->merge([
             'cnpj' => str_replace(['.', '/','-'], '', $request->cnpj),
+            'cep' => str_replace(['-'], '', $request->cep)
         ]);
 
         $loja->update($request->except(['_token', '_method']));

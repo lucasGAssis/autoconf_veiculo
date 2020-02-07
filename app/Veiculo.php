@@ -21,4 +21,7 @@ class Veiculo extends Model
     public function modelo(){
         return $this->hasOne(Modelo::class, 'id', 'modeloId');
     }
+    public function loja(){
+        return $this->hasOne(Loja::class, 'id', 'lojaId');
+    }
 }

@@ -7,6 +7,7 @@ use App\Http\Requests\VeiculoStore;
 use App\Marca;
 use App\Modelo;
 use App\Veiculo;
+use App\Loja;
 
 class VeiculoController extends Controller
 {
@@ -31,7 +32,8 @@ class VeiculoController extends Controller
 
         $marcas = Marca::all();
         $modelos = collect([]);
-        return view('veiculo.create', compact('marcas', 'modelos'));
+        $lojas = Loja::all();
+        return view('veiculo.create', compact('marcas', 'modelos', 'lojas'));
     }
 
     public function store(VeiculoStore $request){
@@ -40,7 +42,15 @@ class VeiculoController extends Controller
             'placa' => preg_replace("/[^a-zA-Z0-9]+/", "", $request->placa)
         ]);
    
-        $veiculo = Veiculo::insert($request->except(['_token', '_method', 'marcaId']));
+        $novo = new Veiculo;
+
+            $novo->placa = $request->placa;
+            $novo->chassi = $request->chassi;
+            $novo->anoFabricacao = $request->anoFabricacao;
+            $novo->anoModelo = $request->anoModelo;
+            $novo->modeloId = $request->modeloId;
+            $novo->lojaId = $request->lojaId;
+            $novo->save();
 
         return redirect()->route('veiculo');
     }
@@ -49,9 +59,10 @@ class VeiculoController extends Controller
 
         $veiculo = Veiculo::find($id);
         $marcas = Marca::all();
+        $lojas = Loja::all();
         $modelos = Modelo::where('marcaId', $veiculo->modelo->marca->id)->get();
 
-        return view('veiculo.edit', compact('marcas', 'modelos', 'veiculo'));
+        return view('veiculo.edit', compact('marcas', 'modelos', 'veiculo', 'lojas'));
     }
 
     public function update(Request $request, $id){

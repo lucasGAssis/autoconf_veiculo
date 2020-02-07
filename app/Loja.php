@@ -12,7 +12,11 @@ class Loja extends Model
     protected $fillable = [
         "nome",
         "cnpj",
-        "logradouro_id",
+        "cep",
+        "estado",
+        "cidade",
+        "bairro",
+        "logradouro",
         "numero",
         "complemento"
     ];
