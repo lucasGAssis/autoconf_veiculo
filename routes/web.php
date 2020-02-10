@@ -37,3 +37,6 @@ Route::post('/estado/search', '\App\Http\Controllers\EnderecoController@searchEs
 Route::post('/cidade/search', '\App\Http\Controllers\EnderecoController@searchCidade')->name('endereco.cidade.search');
 Route::post('/bairro/search', '\App\Http\Controllers\EnderecoController@searchBairro')->name('endereco.bairro.search');
 Route::post('/endereco/search', '\App\Http\Controllers\EnderecoController@search')->name('endereco.search');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

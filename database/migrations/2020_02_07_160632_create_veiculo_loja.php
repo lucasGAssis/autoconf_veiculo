@@ -25,6 +25,8 @@ class CreateVeiculoLoja extends Migration
             $table->foreign('modeloId')->references('id')->on('modelo');
             $table->unsignedBigInteger('lojaId');
             $table->foreign('lojaId')->references('id')->on('lojas');
+            $table->unsignedBigInteger('userId');
+            $table->foreign('userId')->references('id')->on('users');
         });
     }
 
