@@ -15,6 +15,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::group(['middleware' => ['auth']], function(){ 
+
 Route::get('/veiculo', '\App\Http\Controllers\VeiculoController@index')->name('veiculo');
 Route::get('/veiculo/create', '\App\Http\Controllers\VeiculoController@create')->name('veiculo.create');
 Route::post('/veiculo/store', '\App\Http\Controllers\VeiculoController@store')->name('veiculo.store');
@@ -26,7 +28,6 @@ Route::post('/modelo/search', '\App\Http\Controllers\ModeloController@search')->
 
 
 //Rotas da Loja
-
 Route::get('/loja', '\App\Http\Controllers\LojaController@index')->name('loja');
 Route::get('/loja/create', '\App\Http\Controllers\LojaController@create')->name('loja.create');
 Route::post('/loja/store', '\App\Http\Controllers\LojaController@store')->name('loja.store');
@@ -37,6 +38,8 @@ Route::post('/estado/search', '\App\Http\Controllers\EnderecoController@searchEs
 Route::post('/cidade/search', '\App\Http\Controllers\EnderecoController@searchCidade')->name('endereco.cidade.search');
 Route::post('/bairro/search', '\App\Http\Controllers\EnderecoController@searchBairro')->name('endereco.bairro.search');
 Route::post('/endereco/search', '\App\Http\Controllers\EnderecoController@search')->name('endereco.search');
+
+});
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

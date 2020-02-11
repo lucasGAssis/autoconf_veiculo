@@ -25,7 +25,13 @@ class CreateUser extends Migration
             $table->rememberToken();
             $table->timestamps();
         });
+        
+        Schema::table('users', function($table)
+        {
+            $table->integer('perfilId');
+        });
     }
+
 
     /**
      * Reverse the migrations.

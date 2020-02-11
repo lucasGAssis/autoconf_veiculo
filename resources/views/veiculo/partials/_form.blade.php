@@ -7,18 +7,6 @@
 @endif
     @csrf
     <div class="form-row">
-        <div class="col-12 col-md-6">
-        <label for="_loja">Loja: </label>
-        <select class="form-control @if($errors->{$errorBag}->has('lojaId')) is-invalid @endif" name="lojaId" id="_loja">
-            <option value="">-----</option>
-            @foreach ($lojas as $loja)
-            <option value="{{$loja->id}}" @if(old('lojaId', !empty($veiculo->lojaId) ? $veiculo->lojaId : '') == $loja->id) selected="" @endif>{{$loja->nome}}</option>
-            @endforeach
-        </select>
-        @if($errors->{$errorBag}->has('lojaId'))
-            <div class="invalid-feedback"> {{  $errors->{$errorBag}->first('lojaId') }}</div>
-        @endif
-        </div>
     </div>
     <div class="form-row">
         <div class="col-12 col-md-6">

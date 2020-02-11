@@ -12,17 +12,18 @@ use App\Loja;
 class VeiculoController extends Controller
 {
     public function index(Request $request){
+        $user = auth()->user();
         $busca = $request->query('busca');
         $busca = isset($busca) ? $request->query('busca') : '';
         
         if(!empty($busca)){
-            $veiculos = Veiculo::where('placa', 'like', '%'.$busca.'%')->orWhereHas('modelo', function($query) use ($busca){
+            $veiculos = Veiculo::where('lojaId', $user->lojaId)->orWhere('placa', 'like', '%'.$busca.'%')->orWhereHas('modelo', function($query) use ($busca){
               $query->where('nome', 'like', '%'.$busca.'%')->orWhereHas('marca', function($query) use ($busca){
                   $query->where('nome', 'like', '%'.$busca.'%');
               });  
             })->paginate(1);
         }else{
-            $veiculos = Veiculo::paginate(1);
+            $veiculos = Veiculo::where('lojaId', $user->lojaId)->paginate(1);
         }
         return view('veiculo.index', compact('veiculos', 'busca')); 
 
@@ -37,7 +38,7 @@ class VeiculoController extends Controller
     }
 
     public function store(VeiculoStore $request){
-
+        $user = auth()->user();
         $request->merge([
             'placa' => preg_replace("/[^a-zA-Z0-9]+/", "", $request->placa)
         ]);
@@ -49,7 +50,8 @@ class VeiculoController extends Controller
             $novo->anoFabricacao = $request->anoFabricacao;
             $novo->anoModelo = $request->anoModelo;
             $novo->modeloId = $request->modeloId;
-            $novo->lojaId = $request->lojaId;
+            $novo->lojaId = $user->lojaId;
+            $novo->userId = $user->id;
             $novo->save();
 
         return redirect()->route('veiculo');
