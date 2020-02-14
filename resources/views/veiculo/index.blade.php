@@ -20,6 +20,7 @@
         <th scope="col">Marca</th>
         <th scope="col">Loja</th>
         <th scope="col">Modelo</th>
+        <th scope="col">Fotos</th>
         <th scope="col">Ações</th>
       </tr>
     </thead>
@@ -33,9 +34,12 @@
             <td>{{ $veiculo->loja->nome }}</td>
             <td>{{ $veiculo->modelo->nome }}</td>
             <td>
-              <div class="row">
+                <a href="{{ route('galeria.show', $veiculo->id) }}" class="btn btn-primary">Adicionar Foto</a>
+              </td>
+              <td>
+                <div class="row">
                 <div class="col-6">
-                <a href="{{ route('veiculo.edit', $veiculo->id) }}" class="btn btn-default">Editar</a>
+                <a href="{{ route('veiculo.edit', $veiculo->id) }}" class="btn btn-light">Editar</a>
                 </div>
                 <div class="col-6">
                   <form action="{{route('veiculo.destroy',  $veiculo->id)}}" method="POST" novalidate>
