@@ -40,7 +40,7 @@ Route::post('/bairro/search', '\App\Http\Controllers\EnderecoController@searchBa
 Route::post('/endereco/search', '\App\Http\Controllers\EnderecoController@search')->name('endereco.search');
 
 Route::get('/galeria/{id}/show', '\App\Http\Controllers\GaleriaController@show')->name('galeria.show');
-Route::get('/galeria/{id}/save', '\App\Http\Controllers\GaleriaController@save')->name('galeria.save');
+Route::post('/galeria/{id}/save', '\App\Http\Controllers\GaleriaController@save')->name('galeria.save');
 
 });
 Auth::routes();
