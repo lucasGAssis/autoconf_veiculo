@@ -10,7 +10,8 @@ class GaleriaController extends Controller
 {
     public function show(Request $request, $id){
         $veiculo = Veiculo::find($id);
-    return view('veiculo.galeria.galeria', compact('veiculo'));
+        $galerias = Galeria::where("veiculoId", $veiculo->id)->get();
+    return view('veiculo.galeria.galeria', compact('veiculo', 'galerias'));
     }
 
     public function save(Request $request, $id){

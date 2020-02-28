@@ -16,5 +16,15 @@
             <button type="submit" class="btn btn-primary">Salvar</button>  
     </form>
 </div>
+
+<div class="row">
+    @foreach ($galerias as $item)
+        <div class="col-4">
+            <div class="card mt-5">
+                <img src="{{url('storage/'.$item->path)}}" class="img-fluid" alt="...">
+            </div>
+        </div>
+    @endforeach
+</div>
 @endsection
 
