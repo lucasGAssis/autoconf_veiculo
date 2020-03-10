@@ -23,6 +23,7 @@ class VerifyCsrfToken extends Middleware
         '/estado/search',
         '/cidade/search',
         '/bairro/search',
-        '/endereco/search'
+        '/endereco/search',
+        'api/*',
     ];
 }
